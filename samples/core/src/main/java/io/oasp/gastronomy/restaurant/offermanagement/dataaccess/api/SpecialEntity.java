@@ -3,6 +3,7 @@ package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -38,7 +39,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
   /**
    * @return offer
    */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "offer_id")
   public OfferEntity getOffer() {
 

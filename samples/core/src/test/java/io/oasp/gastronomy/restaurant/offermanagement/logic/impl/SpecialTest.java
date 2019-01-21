@@ -1,7 +1,5 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
-import static org.junit.Assert.assertNotNull;
-
 import javax.inject.Inject;
 
 import org.flywaydb.core.Flyway;
@@ -10,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import io.oasp.gastronomy.restaurant.SpringBootApp;
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.Product;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.impl.dao.ProductDaoImpl;
@@ -42,16 +40,23 @@ public class SpecialTest extends ComponentTest {
   @Test
   public void test() {
 
-    SpecialEntity special = new SpecialEntity();
+    // SpecialEntity special = new SpecialEntity();
+    // OfferEntity offer = new OfferEntity();
+    //
+    // special.setName("Danie Dnia");
+    // offer.setId(1L);
+    // offer.setName("Zupa pomidorowa");
+    // special.setOffer(offer);
+    //
+    // SpecialEntity special_result = this.specialDao.save(special);
+    // assertNotNull("Ok not null", special_result);
+    //
+
     OfferEntity offer = new OfferEntity();
-
-    special.setName("Danie Dnia");
-    offer.setId(1L);
-    offer.setName("Zupa pomidorowa");
-    special.setOffer(offer);
-
-    SpecialEntity special_result = this.specialDao.save(special);
-    assertNotNull("Ok not null", special_result);
+    offer.setNumber(102L);
+    offer.setPrice(new Money(12));
+    this.offerDao.save(offer);
+    // assertNotNull("Ok not null", offer_result);
 
     // filter.setFetchDrinks(true);
     // filter.setFetchMeals(false);
