@@ -13,6 +13,7 @@ import io.oasp.gastronomy.restaurant.SpringBootApp;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.Product;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.impl.dao.ProductDaoImpl;
@@ -42,8 +43,9 @@ public class SpecialTest extends ComponentTest {
   @Test
   public void test() {
 
-    // SpecialEntity special = new SpecialEntity();
-    // OfferEntity offer = new OfferEntity();
+    // Given
+    SpecialEntity special = new SpecialEntity();
+    OfferEntity offer = new OfferEntity();
     //
     // special.setName("Danie Dnia");
     // offer.setId(1L);
@@ -54,11 +56,17 @@ public class SpecialTest extends ComponentTest {
     // assertNotNull("Ok not null", special_result);
     //
 
-    OfferEntity offer = new OfferEntity();
+    // When
     offer.setNumber(102L);
     offer.setPrice(new Money(12));
 
-    assertNotNull("Ok not null", this.offerDao.save(offer));
+    special.setName("Danie Dnia");
+
+    offer.setName("Zupa pomidorowa");
+    special.setOffer(offer);
+
+    assertNotNull("Offer successfully saved", this.offerDao.save(offer));
+    assertNotNull("Special successfully saved", this.specialDao.save(special));
 
     // filter.setFetchDrinks(true);
     // filter.setFetchMeals(false);
