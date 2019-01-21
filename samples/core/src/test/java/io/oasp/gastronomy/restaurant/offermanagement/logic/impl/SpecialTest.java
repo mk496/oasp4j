@@ -1,11 +1,13 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
+import static org.junit.Assert.assertNotNull;
+
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.flywaydb.core.Flyway;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import io.oasp.gastronomy.restaurant.SpringBootApp;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
@@ -21,8 +23,8 @@ import io.oasp.module.test.common.base.ComponentTest;
  *
  * @since dev
  */
-@SpringBootTest(classes = { SpringBootApp.class })
-@WebAppConfiguration
+@Transactional
+@SpringBootTest(classes = { SpringBootApp.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SpecialTest extends ComponentTest {
 
   @Inject
@@ -55,8 +57,8 @@ public class SpecialTest extends ComponentTest {
     OfferEntity offer = new OfferEntity();
     offer.setNumber(102L);
     offer.setPrice(new Money(12));
-    this.offerDao.save(offer);
-    // assertNotNull("Ok not null", offer_result);
+
+    assertNotNull("Ok not null", this.offerDao.save(offer));
 
     // filter.setFetchDrinks(true);
     // filter.setFetchMeals(false);

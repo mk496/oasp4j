@@ -17,7 +17,7 @@ public class SpecialDaoImpl extends ApplicationMasterDataDaoImpl<SpecialEntity> 
   protected Class<SpecialEntity> getEntityClass() {
 
     // TODO Auto-generated method stub
-    return null;
+    return SpecialEntity.class;
   }
 
 }

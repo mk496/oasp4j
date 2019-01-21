@@ -19,6 +19,16 @@ import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersisten
 @Table(name = "Special")
 public class SpecialEntity extends ApplicationPersistenceEntity {
 
+  private String name;
+
+  private OfferEntity offer;
+
+  private WeeklyPeriodEmbeddable activePeriod;
+
+  private Money specialPrice;
+
+  private static final long serialVersionUID = 1L;
+
   /**
    * @return name
    */
@@ -87,11 +97,4 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
     this.specialPrice = specialPrice;
   }
 
-  private String name;
-
-  private OfferEntity offer;
-
-  private WeeklyPeriodEmbeddable activePeriod;
-
-  private Money specialPrice;
 }
