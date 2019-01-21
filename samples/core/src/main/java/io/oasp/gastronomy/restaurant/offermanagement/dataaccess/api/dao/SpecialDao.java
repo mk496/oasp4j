@@ -1,5 +1,7 @@
 package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao;
 
+import java.util.List;
+
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.ApplicationRevisionedDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
