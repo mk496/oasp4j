@@ -3,8 +3,6 @@ package io.oasp.gastronomy.restaurant.offermanagement.logic.api.to;
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.Special;
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
@@ -15,52 +13,50 @@ public class SpecialEto extends AbstractEto implements Special {
 
   private String name;
 
-  private OfferEntity offer;
+  private OfferEto offer;
 
-  private WeeklyPeriodEmbeddable activePeriod;
+  private WeeklyPeriod activePeriod;
 
   private Money specialPrice;
 
-  @Override
   public String getName() {
 
-    // TODO Auto-generated method stub
-    return null;
+    return this.name;
   }
 
-  @Override
   public void setName(String name) {
 
-    // TODO Auto-generated method stub
-
+    this.name = name;
   }
 
-  @Override
+  public OfferEto getOffer() {
+
+    return this.offer;
+  }
+
+  public void setOffer(OfferEto offer) {
+
+    this.offer = offer;
+  }
+
   public WeeklyPeriod getActivePeriod() {
 
-    // TODO Auto-generated method stub
-    return null;
+    return this.activePeriod;
   }
 
-  @Override
   public void setActivePeriod(WeeklyPeriod activePeriod) {
 
-    // TODO Auto-generated method stub
-
+    this.activePeriod = activePeriod;
   }
 
-  @Override
   public Money getSpecialPrice() {
 
-    // TODO Auto-generated method stub
-    return null;
+    return this.specialPrice;
   }
 
-  @Override
   public void setSpecialPrice(Money specialPrice) {
 
-    // TODO Auto-generated method stub
-
+    this.specialPrice = specialPrice;
   }
 
 }
