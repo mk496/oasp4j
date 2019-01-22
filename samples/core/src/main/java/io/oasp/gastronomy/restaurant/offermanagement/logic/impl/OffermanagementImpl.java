@@ -26,6 +26,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.common.api.datatype.Product
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.exception.OfferEmptyException;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.ProductEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.DrinkDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.MealDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
@@ -46,6 +47,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchC
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
@@ -100,6 +102,26 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
 
     LOG.debug("Get SpecialEto with id '{}' from database.", id);
     return getBeanMapper().map(getSpecialDao().findOne(id), SpecialEto.class);
+  }
+
+  @Override
+  public SpecialEto saveSpecial(SpecialEto specialEto) {
+
+    Objects.requireNonNull(specialEto, "special");
+    SpecialEntity special = this.specialDao.save(getBeanMapper().map(specialEto, SpecialEntity.class));
+    return getBeanMapper().map(special, SpecialEto.class);
+  }
+
+  @Override
+  public void deleteSpecial(Long id) {
+
+    this.specialDao.delete(id);
+  }
+
+  @Override
+  public List<SpecialEto> getActiveSpecials(SpecialSearchCriteriaTo searchCriteria) {
+
+    return getBeanMapper().mapList(this.specialDao.findActiveSpecials(searchCriteria), SpecialEto.class);
   }
 
   @Override

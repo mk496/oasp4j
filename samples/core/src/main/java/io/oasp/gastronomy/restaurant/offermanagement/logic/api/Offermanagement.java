@@ -19,6 +19,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchC
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
@@ -28,6 +29,12 @@ import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 public interface Offermanagement {
 
   SpecialEto findSpecial(Long id);
+
+  SpecialEto saveSpecial(@Valid SpecialEto specialEto);
+
+  void deleteSpecial(Long id);
+
+  List<SpecialEto> getActiveSpecials(SpecialSearchCriteriaTo searchCriteria);
 
   /**
    * Gets an {@link OfferEto} using its entity identifier.
