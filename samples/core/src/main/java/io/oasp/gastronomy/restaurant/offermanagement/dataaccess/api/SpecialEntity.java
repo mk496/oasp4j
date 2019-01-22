@@ -78,6 +78,12 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
    */
   public void setActivePeriod(WeeklyPeriodEmbeddable activePeriod) {
 
+    WeeklyPeriodEmbeddable period = new WeeklyPeriodEmbeddable();
+    period.setEndingDay(activePeriod.getEndingDay());
+    period.setEndingHour(activePeriod.getEndingHour());
+    period.setStartingDay(activePeriod.getStartingDay());
+    period.setStartingHour(activePeriod.getStartingHour());
+
     this.activePeriod = activePeriod;
   }
 
