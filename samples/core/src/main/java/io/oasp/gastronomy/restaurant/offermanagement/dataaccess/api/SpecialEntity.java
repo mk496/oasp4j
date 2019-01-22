@@ -66,6 +66,17 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
     this.offer = offer;
   }
 
+  public void setOfferId(Long offerId) {
+
+    if (offerId == null) {
+      this.offer = null;
+    } else {
+      OfferEntity offerEntity = new OfferEntity();
+      offerEntity.setId(offerId);
+      this.offer = offerEntity;
+    }
+  }
+
   /**
    * @return activePeriod
    */

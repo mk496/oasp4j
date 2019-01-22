@@ -13,7 +13,7 @@ public class SpecialEto extends AbstractEto implements Special {
 
   private String name;
 
-  private OfferEto offer;
+  private Long offerId;
 
   private WeeklyPeriod activePeriod;
 
@@ -29,14 +29,14 @@ public class SpecialEto extends AbstractEto implements Special {
     this.name = name;
   }
 
-  public OfferEto getOffer() {
+  public long getOfferId() {
 
-    return this.offer;
+    return this.offerId;
   }
 
-  public void setOffer(OfferEto offer) {
+  public void setOfferId(Long offerId) {
 
-    this.offer = offer;
+    this.offerId = offerId;
   }
 
   public WeeklyPeriod getActivePeriod() {

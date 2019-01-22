@@ -11,10 +11,10 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
-import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.module.beanmapping.common.api.BeanMapper;
 import io.oasp.module.test.common.base.ModuleTest;
 
@@ -43,6 +43,9 @@ public class OffermanagementImplTest extends ModuleTest {
   @Mock
   private BeanMapper beanMapper;
 
+  @Mock
+  private SpecialDao specialDao;
+
   /**
    * This method initializes the object {@link OffermanagementImpl} and assigns the mocked objects of the classes
    * {@link OfferDao} and {@link BeanMapper} to the attributes of the {@link OffermanagementImpl} object before tests,
@@ -54,6 +57,7 @@ public class OffermanagementImplTest extends ModuleTest {
     this.offerManagementImpl = new OffermanagementImpl();
     this.offerManagementImpl.setOfferDao(this.offerDao);
     this.offerManagementImpl.setBeanMapper(this.beanMapper);
+    this.offerManagementImpl.setSpecialDao(this.specialDao);
   }
 
   /**
@@ -64,6 +68,7 @@ public class OffermanagementImplTest extends ModuleTest {
 
     this.beanMapper = null;
     this.offerDao = null;
+    this.specialDao = null;
     this.offerManagementImpl = null;
   }
 
@@ -71,46 +76,139 @@ public class OffermanagementImplTest extends ModuleTest {
    * This method tests the execution of the findOffer method belonging to the {@link OffermanagementImpl} class
    */
   @Test
-  public void findOffer() {
+  public void findSpecial() {
 
     // given
-    OfferEntity offerEntity = mock(OfferEntity.class);
-    OfferEto offerEto = new OfferEto();
+    SpecialEntity specialEntity = mock(SpecialEntity.class);
+    SpecialEto specialEto = new SpecialEto();
 
-    when(this.offerDao.findOne(ID)).thenReturn(offerEntity);
-    when(this.beanMapper.map(offerEntity, OfferEto.class)).thenReturn(offerEto);
+    when(this.specialDao.findOne(ID)).thenReturn(specialEntity);
+    when(this.beanMapper.map(specialEntity, SpecialEto.class)).thenReturn(specialEto);
 
     // when
-    OfferEto responseOfferEto = this.offerManagementImpl.findOffer(ID);
+    SpecialEto responseOfferEto = this.offerManagementImpl.findSpecial(ID);
 
     // then
     assertThat(responseOfferEto).isNotNull();
-    assertThat(responseOfferEto).isEqualTo(offerEto);
+    assertThat(responseOfferEto).isEqualTo(specialEto);
   }
 
   /**
    * This method tests the execution of the findOfferCto method belonging to the {@link OffermanagementImpl} class
    */
-  @Test
-  public void findOfferCto() {
+  // @Test
+  // public void findOfferCto() {
+  //
+  // // given
+  // OfferCto offerCto = new OfferCto();
+  // OfferEto offerEto = new OfferEto();
+  //
+  // offerCto.setOffer(offerEto);
+  // OfferEntity offerEntity = mock(OfferEntity.class);
+  //
+  // when(this.offerDao.findOne(ID)).thenReturn(offerEntity);
+  // when(this.beanMapper.map(offerEntity, OfferEto.class)).thenReturn(offerEto);
+  //
+  // // when
+  // OfferCto responseOfferCto = this.offerManagementImpl.findOfferCto(ID);
+  //
+  // // then
+  // assertThat(responseOfferCto).isNotNull();
+  // assertThat(responseOfferCto.getOffer()).isEqualTo(offerEto);
+  //
+  // }
 
-    // given
-    OfferCto offerCto = new OfferCto();
-    OfferEto offerEto = new OfferEto();
-
-    offerCto.setOffer(offerEto);
-    OfferEntity offerEntity = mock(OfferEntity.class);
-
-    when(this.offerDao.findOne(ID)).thenReturn(offerEntity);
-    when(this.beanMapper.map(offerEntity, OfferEto.class)).thenReturn(offerEto);
-
-    // when
-    OfferCto responseOfferCto = this.offerManagementImpl.findOfferCto(ID);
-
-    // then
-    assertThat(responseOfferCto).isNotNull();
-    assertThat(responseOfferCto.getOffer()).isEqualTo(offerEto);
-
-  }
+  // @Test
+  // public void shouldFindAllActiveSpecials() {
+  // // given
+  // SpecialSearchCriteriaTo searchCriteria = new SpecialSearchCriteriaTo();
+  // SpecialEntity special = new SpecialEntity();
+  // List<SpecialEntity> specials = Collections.singletonList(special);
+  // when(specialDao.findActiveSpecials(searchCriteria)).thenReturn(specials);
+  // SpecialEto specialEto = new SpecialEto();
+  // List<SpecialEto> specialEtos = Collections.singletonList(specialEto);
+  // when(this.beanMapper.mapList(specials, SpecialEto.class)).thenReturn(specialEtos);
+  //
+  // // when
+  // List<SpecialEto> activeSpecials = this.offerManagementImpl.getActiveSpecials(searchCriteria);
+  //
+  // // then
+  // assertThat(activeSpecials).isNotNull();
+  // assertThat(activeSpecials.size()).isEqualTo(1);
+  // assertThat(activeSpecials.get(0)).isEqualTo(specialEto);
+  //
+  // }
+  //
+  // @Test
+  // public void shouldSaveSpecial() {
+  // // given
+  // SpecialEto specialEto = new SpecialEto();
+  // SpecialEntity special = new SpecialEntity();
+  // when(beanMapper.map(special , SpecialEto.class)).thenReturn(specialEto);
+  // when(beanMapper.map(specialEto , SpecialEntity.class)).thenReturn(special);
+  // when(specialDao.save(special)).thenReturn(special);
+  //
+  // // when
+  // SpecialEto savedSpecial = offerManagementImpl.saveSpecial(specialEto);
+  //
+  // // then
+  // assertThat(savedSpecial).isNotNull();
+  // assertThat(savedSpecial).isEqualTo(specialEto);
+  //
+  // }
+  //
+  // @Test
+  // public void shouldDeleteSpecial() {
+  // // given
+  // // when
+  // offerManagementImpl.deleteSpecial(1L);
+  //
+  // // then
+  // Mockito.verify(specialDao).delete(1L);
+  //
+  // }
+  //
+  // @Test
+  // public void shouldFindOfferWithSpecial() {
+  // // given
+  // OfferSearchCriteriaTo criteria = new OfferSearchCriteriaTo();
+  // OfferEntity offer = new OfferEntity();
+  // offer.setPrice(new Money(BigDecimal.TEN));
+  // offer.setNumber(1L);
+  // List<OfferEntity> offersWithoutSpecials = Collections.singletonList(offer);
+  // PaginatedListTo<OfferEntity> paginatedOffersWithoutSpecials = new PaginatedListTo<>(offersWithoutSpecials, new
+  // PaginationResultTo());
+  // when(offerDao.findOffers(criteria)).thenReturn(paginatedOffersWithoutSpecials);
+  // OfferEto offerEto = new OfferEto();
+  // offerEto.setNumber(1L);
+  // offerEto.setPrice(new Money(BigDecimal.TEN));
+  // when(beanMapper.mapList(offersWithoutSpecials, OfferEto.class)).thenReturn(Collections.singletonList(offerEto ));
+  // when(specialDao.findBestActiveSpecial(Mockito.argThat(new HasTheSameOfferNumber(1L)))).thenReturn(new
+  // Money(BigDecimal.ONE));
+  //
+  // // when
+  // PaginatedListTo<OfferEto> offers = offerManagementImpl.findOfferEtos(criteria);
+  //
+  // // then
+  // assertThat(offers.getResult().size()).isEqualTo(1);
+  // assertThat(offers.getResult().get(0).getPrice()).isEqualTo(new Money(BigDecimal.valueOf(9)));
+  // assertThat(offers.getResult().get(0).getSpecial()).isEqualTo(new Money(BigDecimal.ONE));
+  //
+  // }
+  //
+  // private class HasTheSameOfferNumber extends ArgumentMatcher<SpecialSearchCriteriaTo> {
+  //
+  // private long offerNumber;
+  //
+  // public HasTheSameOfferNumber(long offerNumber) {
+  // this.offerNumber = offerNumber;
+  // }
+  //
+  // @Override
+  // public boolean matches(Object argument) {
+  // return (argument instanceof SpecialSearchCriteriaTo)
+  // && ((SpecialSearchCriteriaTo) argument).getOfferNumber().equals(offerNumber);
+  // }
+  // }
 
 }
