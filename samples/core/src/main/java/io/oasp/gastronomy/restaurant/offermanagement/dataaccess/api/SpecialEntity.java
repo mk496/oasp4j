@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.Special;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
 
 /**
  * @author MKARASKI
@@ -17,7 +19,7 @@ import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersisten
  */
 @Entity
 @Table(name = "Special")
-public class SpecialEntity extends ApplicationPersistenceEntity {
+public class SpecialEntity extends ApplicationPersistenceEntity implements Special {
 
   private String name;
 
@@ -76,7 +78,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
   /**
    * @param activePeriod new value of {@link #getactivePeriod}.
    */
-  public void setActivePeriod(WeeklyPeriodEmbeddable activePeriod) {
+  public void setActivePeriod(WeeklyPeriod activePeriod) {
 
     WeeklyPeriodEmbeddable period = new WeeklyPeriodEmbeddable();
     period.setEndingDay(activePeriod.getEndingDay());
@@ -84,7 +86,7 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
     period.setStartingDay(activePeriod.getStartingDay());
     period.setStartingHour(activePeriod.getStartingHour());
 
-    this.activePeriod = activePeriod;
+    this.activePeriod = period;
   }
 
   /**
@@ -102,5 +104,12 @@ public class SpecialEntity extends ApplicationPersistenceEntity {
 
     this.specialPrice = specialPrice;
   }
+
+  // @Override
+  // public void setActivePeriod(WeeklyPeriod activePeriod) {
+  //
+  // // TODO Auto-generated method stub
+  //
+  // }
 
 }

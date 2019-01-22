@@ -6,12 +6,14 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.WeeklyPeriod;
+
 /**
  * @author MKARASKI
  *
  */
 @Embeddable
-public class WeeklyPeriodEmbeddable {
+public class WeeklyPeriodEmbeddable implements WeeklyPeriod {
 
   private DayOfWeek startingDay;
 
