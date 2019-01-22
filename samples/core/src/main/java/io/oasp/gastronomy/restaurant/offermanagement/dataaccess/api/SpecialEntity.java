@@ -85,7 +85,6 @@ public class SpecialEntity extends ApplicationPersistenceEntity implements Speci
     period.setEndingHour(activePeriod.getEndingHour());
     period.setStartingDay(activePeriod.getStartingDay());
     period.setStartingHour(activePeriod.getStartingHour());
-
     this.activePeriod = period;
   }
 
