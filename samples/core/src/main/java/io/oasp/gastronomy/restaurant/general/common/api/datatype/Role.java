@@ -17,6 +17,7 @@ public enum Role implements Principal {
    * AccessControlGroup of a cook who works in the kitchen and can see the orders with their positions. He prepares the
    * menus and side-dishes and can mark order-positions as prepared.
    */
+
   COOK("Cook"),
 
   /**
@@ -36,7 +37,9 @@ public enum Role implements Principal {
    * {@link io.oasp.gastronomy.restaurant.staffmanagement.common.api.StaffMember}s.
    */
   // END ARCHETYPE SKIP
-  CHIEF("Chief");
+  CHIEF("Chief"),
+
+  MANAGER("Manager");
 
   private final String name;
 

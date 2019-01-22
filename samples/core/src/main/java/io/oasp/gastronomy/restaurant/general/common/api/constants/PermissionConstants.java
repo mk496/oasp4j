@@ -10,6 +10,9 @@ public abstract class PermissionConstants {
   // put your permission names from access-control-schema.xml as constants here (or generate with cobigen)
   // BEGIN ARCHETYPE SKIP
   /** {@link io.oasp.module.security.common.api.accesscontrol.AccessControlPermission} to retrieve offer. */
+  /** {@link io.oasp.module.security.common.api.accesscontrol.AccessControlPermission} to retrieve offer. */
+  public static final String FIND_SUPPLIERS = "FindSuppliers";
+
   public static final String FIND_OFFER = "FindOffer";
 
   /** {@link io.oasp.module.security.common.api.accesscontrol.AccessControlPermission} to save offer. */

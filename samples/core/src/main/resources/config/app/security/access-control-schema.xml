@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <access-control-schema>
+<group id="Manager" type="role">
+    <inherits></inherits>
+    <permissions>
+      <!-- BEGIN ARCHETYPE SKIP -->
+      <!-- offermanagement -->
+      <permission id="FindSuppliers"/> 
+    </permissions>
+  </group>
   <group id="ReadMasterData" type="group">
     <permissions>
       <!-- BEGIN ARCHETYPE SKIP -->
