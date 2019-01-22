@@ -1,5 +1,10 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api;
 
+import java.sql.Blob;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
@@ -13,18 +18,16 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
-
-import java.sql.Blob;
-import java.util.List;
-
-import javax.validation.Valid;
 
 /**
  * Interface for OfferManagement.
  *
  */
 public interface Offermanagement {
+
+  SpecialEto findSpecial(Long id);
 
   /**
    * Gets an {@link OfferEto} using its entity identifier.
