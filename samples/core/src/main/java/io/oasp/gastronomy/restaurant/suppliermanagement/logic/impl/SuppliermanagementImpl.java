@@ -46,7 +46,6 @@ public class SuppliermanagementImpl extends AbstractComponentFacade implements S
   }
 
   @Override
-  @RolesAllowed(PermissionConstants.FIND_SUPPLIERS)
   public SupplierEto findSupplier(Long id) {
 
     LOG.debug("Get Supplier with id {} from database.", id);
