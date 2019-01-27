@@ -139,13 +139,13 @@ CREATE TABLE Special(
     id BIGINT NOT NULL AUTO_INCREMENT,
     modificationCounter INTEGER NOT NULL,
     name VARCHAR(255),
-    offerId BIGINT NOT NULL,
+    offer_Id BIGINT NOT NULL,
     startingDay INTEGER NOT NULL,
     startingHour INTEGER NOT NULL,
     endingDay INTEGER NOT NULL,
     endingHour INTEGER NOT NULL,
     specialPrice DECIMAL(19, 2),
-    CONSTRAINT FK_SpecialOffer_offerId FOREIGN KEY(offerId) REFERENCES Offer(id) NOCHECK,
+    CONSTRAINT FK_SpecialOffer_offer_Id FOREIGN KEY(offer_Id) REFERENCES Offer(id) NOCHECK,
     CONSTRAINT PK_Special PRIMARY KEY(id),
     CONSTRAINT UC_Special_name UNIQUE(name)
 );
